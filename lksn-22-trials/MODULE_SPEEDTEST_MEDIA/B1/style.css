@@ -16,8 +16,8 @@ body {
   width: 6px;
   display: inline-block;
 
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-load 1.2s infinite ease-in-out;
+  animation: sk-load 1.2s infinite ease-in-out;
 }
 
 .loader .rect2 {
@@ -40,7 +40,7 @@ body {
   animation-delay: -0.8s;
 }
 
-@-webkit-keyframes sk-stretchdelay {
+@-webkit-keyframes sk-load {
   0%,
   40%,
   100% {
@@ -51,7 +51,7 @@ body {
   }
 }
 
-@keyframes sk-stretchdelay {
+@keyframes sk-load {
   0%,
   40%,
   100% {
