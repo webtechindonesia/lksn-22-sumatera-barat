@@ -1,1 +1,0 @@
-# lksn-22-sumatera-barat
