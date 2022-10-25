@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FormController extends Controller
 {
@@ -14,7 +16,13 @@ class FormController extends Controller
      */
     public function index()
     {
-        //
+        $forms = Form::get();
+
+        return response()->json([
+            "message" => "Get all forms success",
+            "forms" => $forms,
+            "status" => 200,
+        ]);
     }
 
     /**
@@ -35,7 +43,33 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'slug' => 'required|regex:/^[A-Za-z. -]+$/|unique:forms',
+            'allowed_domains' => 'array'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "message" => "Invalid field",
+                "status" => 422,
+                "errors" => $validator->messages()
+            ]);
+        }
+
+        $form = Form::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'allowed_domains' => $request->allowed_domains,
+            'description' => $request->description,
+            'limit_one_response' => $request->limit_one_response
+        ]);
+
+        return response()->json([
+            'messages' => 'Create form success',
+            'data' => $form,
+            'status' => 200
+        ]);
     }
 
     /**
@@ -44,9 +78,13 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Form $form, $id)
     {
-        //
+        return response()->json([
+            "message" => "Get all forms success",
+            "forms" => $form,
+            "status" => 200,
+        ]);
     }
 
     /**
