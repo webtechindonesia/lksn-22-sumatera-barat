@@ -61,11 +61,7 @@ class ResponseController extends Controller
         }
 
         foreach ($response as $res) {
-            $responses = Response::create([
-                'user_id' => Auth::user()->id,
-                'question_id' => $res->question_id,
-                'value' => $res->value
-            ]);
+            $responses = Response::create($res);
         }
 
         if (!$responses) {
