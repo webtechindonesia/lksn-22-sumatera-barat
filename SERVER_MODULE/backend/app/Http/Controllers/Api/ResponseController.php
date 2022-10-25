@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Form;
+use App\Models\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class FormController extends Controller
+class ResponseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +17,10 @@ class FormController extends Controller
      */
     public function index()
     {
-        $forms = Form::get();
-
+        $responses = Response::get()->where('id', '=', Auth::user()->id);
         return response()->json([
-            "message" => "Get all forms success",
-            "forms" => $forms,
-            "status" => 200,
+            "message" => "Get responses success",
+            "responses" => $responses
         ]);
     }
 
@@ -41,12 +40,13 @@ class FormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
+
+        $response = $request->toArray();
+
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'slug' => 'required|regex:/^[A-Za-z. -]+$/|unique:forms',
-            'allowed_domains' => 'array'
+            'answers' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -57,18 +57,18 @@ class FormController extends Controller
             ]);
         }
 
-        $form = Form::create([
-            'name' => $request->name,
-            'slug' => $request->slug,
-            'allowed_domains' => $request->allowed_domains,
-            'description' => $request->description,
-            'limit_one_response' => $request->limit_one_response
-        ]);
+        $responses = Response::create($request->all());
+
+        if (!$responses) {
+            return response()->json([
+                "message" => "Something went wrong",
+                "status" => 500
+            ]);
+        }
 
         return response()->json([
-            'messages' => 'Create form success',
-            'data' => $form,
-            'status' => 200
+            "message" => "Submit response success",
+            "status" => 200
         ]);
     }
 
@@ -78,16 +78,9 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $form = Form::whereSlug($slug)->first();
-        $form['questions'] = $form->questions;
-
-        return response()->json([
-            "message" => "Get form success",
-            "forms" => $form,
-            "status" => 200,
-        ]);
+        //
     }
 
     /**
