@@ -25,4 +25,14 @@ class Question extends Model
     {
         return $this->belongsTo(Form::class);
     }
+
+    /**
+     * Get all of the responses for the Question
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responses()
+    {
+        return $this->hasMany(Response::class);
+    }
 }

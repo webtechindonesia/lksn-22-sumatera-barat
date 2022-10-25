@@ -13,4 +13,14 @@ class Response extends Model
         'question_id',
         'value'
     ];
+
+    /**
+     * Get the question that owns the Response
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 }

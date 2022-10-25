@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Form;
 use App\Models\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +16,15 @@ class ResponseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug)
     {
-        $responses = Response::get()->where('id', '=', Auth::user()->id);
+        $form = Form::whereSlug($slug)->first();
+        $form['questions'] = $form->questions;
+        $form['questions']['answers'] = $form->questions->first()->answers;
+
         return response()->json([
             "message" => "Get responses success",
-            "responses" => $responses
+            "responses" => $form
         ]);
     }
 
