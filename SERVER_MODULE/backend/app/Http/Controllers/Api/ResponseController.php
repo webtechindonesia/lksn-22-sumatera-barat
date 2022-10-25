@@ -18,13 +18,12 @@ class ResponseController extends Controller
      */
     public function index($slug)
     {
-        $form = Form::whereSlug($slug)->first();
-        $form['questions'] = $form->questions;
-        $form['questions']['answers'] = $form->questions->first()->answers;
+        $form = Response::get();
+        $responses = $form;
 
         return response()->json([
             "message" => "Get responses success",
-            "responses" => $form
+            "responses" => $responses
         ]);
     }
 
@@ -61,7 +60,10 @@ class ResponseController extends Controller
             ]);
         }
 
-        $responses = Response::create($request->all());
+        foreach ($response as $res) {
+            $res['user_id'] = Auth::user()->id;
+            $responses = Response::create($res);
+        }
 
         if (!$responses) {
             return response()->json([
