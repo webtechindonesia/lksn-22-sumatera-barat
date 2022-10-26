@@ -12,7 +12,10 @@
       }
       .text {
         position: relative;
-        /* color: white; */
+        border: 1px solid black;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
       }
 
       .cursor-box {
@@ -26,6 +29,7 @@
   </head>
   <body>
     <div class="cursor-box"></div>
+    <div class="overlay"></div>
     <div class="text">
       The standard Lorem Ipsum passage, used since the 1500s "Lorem ipsum dolor
       sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -91,7 +95,7 @@
       pains to avoid worse pains."
     </div>
     <script>
-      const cursorBox = document.querySelector(".cursor-box");
+      const cursorBox = document.querySelector(".text");
       window.addEventListener("mousemove", (event) => {
         const mouseX = event.pageX;
         const mouseY = event.pageY;
