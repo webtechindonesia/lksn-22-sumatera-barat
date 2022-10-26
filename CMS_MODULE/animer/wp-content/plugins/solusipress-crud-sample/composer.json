@@ -1,0 +1,5 @@
+{
+    "require": {
+        "anthonybudd/wp_ajax": "^1.0"
+    }
+}

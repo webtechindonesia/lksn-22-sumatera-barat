@@ -1,0 +1,47 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e406523930f98225c99a1d9c713210b1",
+    "packages": [
+        {
+            "name": "anthonybudd/wp_ajax",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anthonybudd/WP_AJAX.git",
+                "reference": "3b2b2fe43aa3e7d6c6b80ef2b33278ae64d651e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anthonybudd/WP_AJAX/zipball/3b2b2fe43aa3e7d6c6b80ef2b33278ae64d651e7",
+                "reference": "3b2b2fe43aa3e7d6c6b80ef2b33278ae64d651e7",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/WP_Ajax.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Anthony Budd",
+                    "email": "anthonybudd94@gmail.com"
+                }
+            ],
+            "time": "2017-11-29T12:25:46+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
