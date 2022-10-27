@@ -80,3 +80,27 @@ body {
   align-items: center;
   margin-top: 50px;
 }
+
+.hover-pink:hover path {
+  fill: pink;
+}
+
+.hover-blue:hover path {
+  fill: skyblue;
+}
+
+.hover-pink:hover .hover-white {
+  fill: white !important;
+}
+
+.hover-blue:hover .hover-white {
+  fill: white !important;
+}
+
+.hover-pink .hover-white {
+  fill: black !important;
+}
+
+.hover-blue .hover-white {
+  fill: black !important;
+}
