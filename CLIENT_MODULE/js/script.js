@@ -1,7 +1,22 @@
 const mainGame = document.getElementById('main-game')
 const current = document.getElementById('current')
+const player1Name = document.getElementById('player1Name')
+const player1Score = document.getElementById('player1Score')
+const player2Name = document.getElementById('player2Name')
+const player2Score = document.getElementById('player2Score')
 
 let playerActive = 1;
+
+let player = {
+    1: { name: "Firman", score: 52 },
+    2: { name: "Budi", score: 66 },
+}
+
+player1Name.innerHTML = player[1].name;
+player2Name.innerHTML = player[2].name;
+
+player1Score.innerHTML = player[1].score;
+player2Score.innerHTML = player[2].score;
 
 const changePlayer = (p) => {
     if (p == 1) {
@@ -20,9 +35,9 @@ const changeCurrentNumber = (number) => {
 let hex = "";
 for (let i = 1; i < 80; i++) {
     if (i >= 11 && i <= 20 || i >= 31 && i <= 40 || i >= 51 && i <= 60 || i >= 71 && i <= 80) {
-        hex += hexagon("white", "black", "transform: translate(22px, 0px) rotate(30deg); margin: -8px !important;", Math.floor(Math.random() * 20) + 1)
+        hex += hexagon("white", "black", "cursor: pointer; transform: translate(22px, 0px) rotate(30deg); margin: -8px !important;", Math.floor(Math.random() * 20) + 1)
     } else {
-        hex += hexagon("white", "black", "transform: rotate(30deg); margin: -8px !important;", Math.floor(Math.random() * 20) + 1)
+        hex += hexagon("white", "black", "cursor: pointer; transform: rotate(30deg); margin: -8px !important;", Math.floor(Math.random() * 20) + 1)
     }
 
     if (i == 10 || i == 20 || i == 30 || i == 40 || i == 50 || i == 60 || i == 70 || i == 80) {
