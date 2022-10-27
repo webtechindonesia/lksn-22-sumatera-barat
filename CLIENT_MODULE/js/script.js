@@ -4,7 +4,7 @@ const player1Name = document.getElementById('player1Name')
 const player1Score = document.getElementById('player1Score')
 const player2Name = document.getElementById('player2Name')
 const player2Score = document.getElementById('player2Score')
-
+const sound = new Audio('./assets/click.mp3');
 
 let playerActive = 1;
 
@@ -105,6 +105,7 @@ var hexAll = document.querySelectorAll('path');
 
 hexAll.forEach(el => {
     el.addEventListener('click', (e) => {
+        sound.play();
         if (playerActive == 1) {
             e.target.parentNode.classList.add('fill-blue');
             updateScore(1, e.target.parentElement.childNodes[3].innerHTML.replace(/\s+/g, ''))
