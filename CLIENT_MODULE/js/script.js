@@ -5,6 +5,7 @@ const player1Score = document.getElementById('player1Score')
 const player2Name = document.getElementById('player2Name')
 const player2Score = document.getElementById('player2Score')
 
+
 let playerActive = 1;
 
 let player = {
@@ -24,6 +25,15 @@ const changePlayer = (p) => {
     } else {
         playerActive = 1
     }
+}
+
+const updateScore = (pl, sc) => {
+    player[pl].score = player[pl].score + parseInt(sc)
+    player1Name.innerHTML = player[1].name;
+    player2Name.innerHTML = player[2].name;
+
+    player1Score.innerHTML = player[1].score;
+    player2Score.innerHTML = player[2].score;
 }
 
 const changeCurrentNumber = (number) => {
@@ -56,9 +66,9 @@ function hexagon(stroke, fill, style = "", number) {
     let cls = ""
 
     if (playerActive == 1) {
-        cls = "hover-pink"
-    } else if (playerActive == 2) {
         cls = "hover-blue"
+    } else if (playerActive == 2) {
+        cls = "hover-pink"
     }
 
     return `
@@ -91,15 +101,25 @@ function hexagon(stroke, fill, style = "", number) {
     `
 }
 
-
 var hexAll = document.querySelectorAll('path');
+
 hexAll.forEach(el => {
     el.addEventListener('click', (e) => {
-        changeCurrentNumber(e.target.parentNode.childNodes[3].innerHTML);
         if (playerActive == 1) {
             e.target.parentNode.classList.add('fill-blue');
-        } else {
+            updateScore(1, e.target.parentElement.childNodes[3].innerHTML.replace(/\s+/g, ''))
+            hexAll.forEach(el => {
+                el.parentElement.classList.toggle("hover-blue");
+                el.parentElement.classList.toggle("hover-pink");
+            });
+        } else if (playerActive == 2) {
             e.target.parentNode.classList.add('fill-pink');
+            updateScore(2, e.target.parentElement.childNodes[3].innerHTML.replace(/\s+/g, ''))
+            hexAll.forEach(el => {
+                el.parentElement.classList.toggle("hover-blue");
+                el.parentElement.classList.toggle("hover-pink");
+            });
         }
+        changeCurrentNumber(e.target.parentNode.childNodes[3].innerHTML);
     });
 });
