@@ -104,3 +104,11 @@ body {
 .hover-blue .hover-white {
   fill: black !important;
 }
+
+.fill-blue path {
+  fill: skyblue;
+}
+
+.fill-pink path {
+  fill: pink;
+}

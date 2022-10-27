@@ -12,9 +12,10 @@ const changePlayer = (p) => {
 }
 
 const changeCurrentNumber = (number) => {
-    changePlayer(playerActive);
+    changePlayer(playerActive)
     current.innerHTML = hexagon("white", playerActive == 1 ? "skyblue" : "pink", "transform: rotate(30deg)", number)
 }
+
 
 let hex = "";
 for (let i = 1; i < 80; i++) {
@@ -32,6 +33,7 @@ for (let i = 1; i < 80; i++) {
 }
 
 mainGame.innerHTML = hex;
+
 current.innerHTML = hexagon("white", playerActive == 1 ? "skyblue" : "pink", "transform: rotate(30deg)", 0)
 
 function hexagon(stroke, fill, style = "", number) {
@@ -79,5 +81,10 @@ var hexAll = document.querySelectorAll('path');
 hexAll.forEach(el => {
     el.addEventListener('click', (e) => {
         changeCurrentNumber(e.target.parentNode.childNodes[3].innerHTML);
+        if (playerActive == 1) {
+            e.target.parentNode.classList.add('fill-blue');
+        } else {
+            e.target.parentNode.classList.add('fill-pink');
+        }
     });
 });
