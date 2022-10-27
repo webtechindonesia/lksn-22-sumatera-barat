@@ -11,8 +11,8 @@ const overlay = document.getElementById('overlay');
 let playerActive = 1;
 
 let player = {
-    1: { name: "Firman", score: 52 },
-    2: { name: "Budi", score: 66 },
+    1: { name: "Firman", score: 0 },
+    2: { name: "Budi", score: 0 },
 }
 
 btnPlay.addEventListener('click', () => {
@@ -127,17 +127,17 @@ hexAll.forEach(el => {
         if (playerActive == 1) {
             e.target.parentNode.classList.add('fill-blue');
             updateScore(1, e.target.parentElement.childNodes[3].innerHTML.replace(/\s+/g, ''))
-            hexAll.forEach(el => {
-                el.parentElement.classList.toggle("hover-blue");
-                el.parentElement.classList.toggle("hover-pink");
-            });
+            // hexAll.forEach(el => {
+            //     el.parentElement.classList.toggle("hover-blue");
+            //     el.parentElement.classList.toggle("hover-pink");
+            // });
         } else if (playerActive == 2) {
             e.target.parentNode.classList.add('fill-pink');
             updateScore(2, e.target.parentElement.childNodes[3].innerHTML.replace(/\s+/g, ''))
-            hexAll.forEach(el => {
-                el.parentElement.classList.toggle("hover-blue");
-                el.parentElement.classList.toggle("hover-pink");
-            });
+            // hexAll.forEach(el => {
+            //     el.parentElement.classList.toggle("hover-blue");
+            //     el.parentElement.classList.toggle("hover-pink");
+            // });
         }
         changeCurrentNumber(e.target.parentNode.childNodes[3].innerHTML);
     });

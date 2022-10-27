@@ -82,11 +82,11 @@ body {
 }
 
 .hover-pink:hover path {
-  fill: pink;
+  fill: #a6811c;
 }
 
 .hover-blue:hover path {
-  fill: skyblue;
+  fill: #a6811c;
 }
 
 .hover-pink:hover .hover-white {
