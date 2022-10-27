@@ -5,6 +5,8 @@ const player1Score = document.getElementById('player1Score')
 const player2Name = document.getElementById('player2Name')
 const player2Score = document.getElementById('player2Score')
 const sound = new Audio('./assets/click.mp3');
+const btnPlay = document.getElementById('btnPlay');
+const overlay = document.getElementById('overlay');
 
 let playerActive = 1;
 
@@ -12,6 +14,22 @@ let player = {
     1: { name: "Firman", score: 52 },
     2: { name: "Budi", score: 66 },
 }
+
+btnPlay.addEventListener('click', () => {
+    const player1NameInput = document.getElementById('player1NameInput');
+    const player2NameInput = document.getElementById('player2NameInput');
+    player[1].name = player1NameInput.value;
+    player[2].name = player2NameInput.value;
+
+    player1Name.innerHTML = player[1].name;
+    player2Name.innerHTML = player[2].name;
+
+    player1Score.innerHTML = player[1].score;
+    player2Score.innerHTML = player[2].score;
+
+    overlay.classList.add("none");
+
+});
 
 player1Name.innerHTML = player[1].name;
 player2Name.innerHTML = player[2].name;
